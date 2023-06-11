@@ -1,27 +1,30 @@
-import News from './news/news';
-import Sources from './sources/sources';
+import News, { Item as NewsItem } from './news/news';
+import Sources, { Item as SourcesItem } from './sources/sources';
 
-interface DrawNews {
-    articles: string;
+export interface DrawNews {
+    articles: NewsItem[];
+
 }
-interface DrawSources {
-    sources: string;
+
+export interface DrawSources {
+    sources: SourcesItem[];
 }
+
 export class AppView {
-    private news: News;
-    private sources: Sources;
+    private news: News<NewsItem>;
+    private sources: Sources<SourcesItem>;
     constructor() {
-        this.news = new News();
-        this.sources = new Sources();
+        this.news = new News<NewsItem>();
+        this.sources = new Sources<SourcesItem>();
     }
 
     public drawNews(data: DrawNews): void {
-        const values = data?.articles ? data?.articles : [];
+        const values = data?.articles ? data.articles : [];
         this.news.draw(values);
     }
 
     public drawSources(data: DrawSources): void {
-        const values = data?.sources ? data?.sources : [];
+        const values = data?.sources ? data.sources : [];
         this.sources.draw(values);
     }
 }
