@@ -1,14 +1,11 @@
 import AppLoader from './appLoader';
 
-interface getSources {
-
-}
 interface getNews {
 
 }
 
 class AppController extends AppLoader {
-    public getSources(callback: (data: getSources) => void): void {
+    public getSources(callback: (data: string) => void): void {
         super.getResp(
             {
                 endpoint: 'sources',
@@ -25,12 +22,12 @@ class AppController extends AppLoader {
             if (target.classList.contains('source__item')) {
                 const sourceId = target.getAttribute('data-source-id');
                 if (newsContainer.getAttribute('data-source') !== sourceId) {
-                    newsContainer.setAttribute('data-source', sourceId);
+                    newsContainer.setAttribute('data-source', sourceId!);
                     super.getResp(
                         {
                             endpoint: 'everything',
                             options: {
-                                sources: sourceId,
+                                sources: sourceId!,
                             },
                         },
                         callback
