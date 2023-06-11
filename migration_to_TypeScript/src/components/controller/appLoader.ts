@@ -1,8 +1,8 @@
 import Loader from './loader';
 
-class AppLoader extends Loader {
+class AppLoader extends Loader<string> {
     constructor() {
-        super('https://newsapi.org/v2/', {
+        super({ link: 'https://newsapi.org/v2/' }, {
             apiKey: 'https://newsapi.org/v2/everything?domains=wsj.com&apiKey=061aca91965445358b93ce15d016e915',
         });
     }
