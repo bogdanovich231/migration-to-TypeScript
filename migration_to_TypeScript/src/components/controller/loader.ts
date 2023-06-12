@@ -2,17 +2,18 @@ enum HttpMethod {
     GET = 'GET',
 }
 
-interface BaseLink {
-    link: string;
+export interface BaseLink {
+    url: string;
+    apiKey: string;
 }
 
-interface Options {
+export interface Options {
     [key: string]: string;
 }
 
 class Loader<T> {
     private baseLink: BaseLink;
-    private options: Options;
+    public options: Options;
 
     constructor(baseLink: BaseLink, options: Options) {
         this.baseLink = baseLink;
@@ -41,7 +42,7 @@ class Loader<T> {
 
     private makeUrl(options: Options, endpoint: string): string {
         const urlOptions = { ...this.options, ...options };
-        let url = `${this.baseLink.link}${endpoint}?`;
+        let url = `${this.baseLink.url}${endpoint}?`;
 
         Object.entries(urlOptions).forEach(([key, value]) => {
             url += `${key}=${value}&`;

@@ -3,25 +3,19 @@ import { Item } from '../../interface/interfaceApi';
 
 class Sources<T extends Item> {
     draw(data: T[]): void {
-        const fragment = document.createDocumentFragment();
-        const sourceItemTemp = document.querySelector('#sourceItemTemp') as HTMLTemplateElement;
+        const sourcesContainer = document.querySelector('.sources');
+        if (!sourcesContainer) {
+            return;
+        }
 
         data.forEach((item) => {
-            const sourceClone = sourceItemTemp.content.cloneNode(true) as DocumentFragment;
-
-            const itemName = sourceClone.querySelector('.source__item-name') as HTMLElement;
-            itemName.textContent = item.name;
-
-            const sourceItem = sourceClone.querySelector('.source__item') as HTMLElement;
+            const sourceItem = document.createElement('button');
+            sourceItem.classList.add('source__item');
             sourceItem.setAttribute('data-source-id', item.id ?? '');
+            sourceItem.textContent = item.name;
 
-            fragment.append(sourceClone);
+            sourcesContainer.appendChild(sourceItem);
         });
-
-        const sourcesContainer = document.querySelector('.sources');
-        if (sourcesContainer) {
-            sourcesContainer.append(fragment);
-        }
     }
 }
 
