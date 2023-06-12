@@ -5,11 +5,11 @@ class AppLoader extends Loader<NewsApiResponse> {
     constructor() {
         const baseLinks: BaseLink[] = [
             {
-                url: "https://news-proxy.spanb4.shop/https://newsapi.org/v2/everything?q=tesla&from=2023-05-12&sortBy=publishedAt&apiKey=",
+                url: "https://news-proxy.spanb4.shop/",
                 apiKey: "061aca91965445358b93ce15d016e915",
             },
             {
-                url: "https://news-proxy.spanb4.shop/https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=",
+                url: "https://news-proxy.spanb4.shop/",
                 apiKey: "061aca91965445358b93ce15d016e915",
             },
         ];
