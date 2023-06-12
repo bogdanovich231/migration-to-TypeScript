@@ -1,17 +1,7 @@
 import './news.css';
+import { NewsArticle } from '../../interface/interfaceApi'
 
-export interface Item {
-    title: string;
-    source: {
-        name: string;
-    };
-    description: string;
-    url: string;
-    author: string;
-    publishedAt: string;
-    urlToImage: string;
-}
-class News<T extends Item> {
+class News<T extends NewsArticle> {
     draw(data: T[]): void {
         const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
@@ -43,7 +33,7 @@ class News<T extends Item> {
                     .reverse()
                     .join('-');
             }
-            const newsDescriptionTitle = newsClone.querySelector('.news__description-title')
+            const newsDescriptionTitle = newsClone.querySelector('.news__description-title');
             if (newsDescriptionTitle instanceof HTMLElement) {
                 newsDescriptionTitle.textContent = item.title;
             }
@@ -60,12 +50,14 @@ class News<T extends Item> {
                 newsReadLink.setAttribute('href', item.url);
             }
 
-
             fragment.append(newsClone);
         });
 
-        document.querySelector('.news')!.innerHTML = '';
-        document.querySelector('.news')!.appendChild(fragment);
+        const newsContainer = document.querySelector('.news');
+        if (newsContainer) {
+            newsContainer.innerHTML = '';
+            newsContainer.appendChild(fragment);
+        }
     }
 }
 

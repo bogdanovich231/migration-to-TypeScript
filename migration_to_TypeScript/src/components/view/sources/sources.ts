@@ -1,9 +1,5 @@
 import './sources.css';
-
-export interface Item {
-    name: string;
-    id: string;
-}
+import { Item } from '../../interface/interfaceApi';
 
 class Sources<T extends Item> {
     draw(data: T[]): void {
@@ -13,13 +9,19 @@ class Sources<T extends Item> {
         data.forEach((item) => {
             const sourceClone = sourceItemTemp.content.cloneNode(true) as DocumentFragment;
 
-            sourceClone.querySelector('.source__item-name')!.textContent = item.name;
-            sourceClone.querySelector('.source__item')!.setAttribute('data-source-id', item.id);
+            const itemName = sourceClone.querySelector('.source__item-name') as HTMLElement;
+            itemName.textContent = item.name;
+
+            const sourceItem = sourceClone.querySelector('.source__item') as HTMLElement;
+            sourceItem.setAttribute('data-source-id', item.id ?? '');
 
             fragment.append(sourceClone);
         });
 
-        document.querySelector('.sources')?.append(fragment);
+        const sourcesContainer = document.querySelector('.sources');
+        if (sourcesContainer) {
+            sourcesContainer.append(fragment);
+        }
     }
 }
 

@@ -33,6 +33,12 @@ const baseConfig = {
         }),
         new CleanWebpackPlugin(),
     ],
+    devServer: {
+        static: {
+            directory: path.join(__dirname, '../dist'),
+        },
+        open: true,
+    },
 };
 
 module.exports = ({ mode }) => {
