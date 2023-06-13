@@ -59,7 +59,7 @@
     z-index: 1;
 }
 
-.news__item .news__description h2 {
+.news__item .news__description-title {
     line-height: 1;
     margin: 0;
     font-size: 1.7rem;

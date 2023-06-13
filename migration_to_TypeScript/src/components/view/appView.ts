@@ -13,8 +13,8 @@ class AppView {
     }
 
     public initialize(): void {
-        this.newsContainer = document.querySelector('.news');
-        this.sourcesContainer = document.querySelector('.sources');
+        this.newsContainer = document.querySelector('#newsItemTemp');
+        this.sourcesContainer = document.querySelector('#sourceItemTemp .sources');
 
         if (this.sourcesContainer) {
             this.sourcesContainer.addEventListener('click', (event: Event) => {
@@ -27,7 +27,6 @@ class AppView {
             });
         }
     }
-
     private getSourceIdFromEvent(event: Event, selector: string): Event | null {
         const sourceItem = (event.target as HTMLElement).closest(selector) as HTMLElement | null;
         if (sourceItem) {
@@ -35,7 +34,6 @@ class AppView {
         }
         return null;
     }
-
     public drawNews(data: NewsArticle[]): void {
         if (!this.newsContainer) {
             return;
@@ -46,6 +44,24 @@ class AppView {
         data.forEach((article) => {
             const newsItem = document.createElement('div');
             newsItem.classList.add('news__item');
+
+            const meta = document.createElement('div');
+            meta.classList.add('news__meta');
+
+            const metaPhoto = document.createElement('div');
+            metaPhoto.classList.add('news__meta-photo');
+
+            const metaDetails = document.createElement('ul');
+            metaDetails.classList.add('news__meta-details');
+
+            const metaAuthor = document.createElement('li');
+            metaAuthor.classList.add('news__meta-author');
+
+            const metaDate = document.createElement('li');
+            metaDate.classList.add('news__meta-date');
+
+            const description = document.createElement('div');
+            description.classList.add('news__description');
 
             const title = document.createElement('h2');
             title.classList.add('news__description-title');
@@ -59,11 +75,32 @@ class AppView {
             content.classList.add('news__description-content');
             content.textContent = article.description;
 
-            newsItem.appendChild(title);
-            newsItem.appendChild(source);
-            newsItem.appendChild(content);
+            const readMore = document.createElement('p');
+            readMore.classList.add('news__read-more');
 
-            this.newsContainer!.appendChild(newsItem);
+            const link = document.createElement('a');
+            link.href = '#';
+            link.textContent = 'Read More';
+
+            readMore.appendChild(link);
+
+            metaDetails.appendChild(metaAuthor);
+            metaDetails.appendChild(metaDate);
+
+            meta.appendChild(metaPhoto);
+            meta.appendChild(metaDetails);
+
+            description.appendChild(title);
+            description.appendChild(source);
+            description.appendChild(content);
+            description.appendChild(readMore);
+
+            newsItem.appendChild(meta);
+            newsItem.appendChild(description);
+
+            if (this.newsContainer) {
+                this.newsContainer.appendChild(newsItem);
+            }
         });
     }
 
@@ -75,10 +112,20 @@ class AppView {
         this.sourcesContainer.innerHTML = '';
 
         data.forEach((source) => {
-            const sourceItem = document.createElement('button');
+            const sourceItem = document.createElement('div');
             sourceItem.classList.add('source__item');
             sourceItem.setAttribute('data-source-id', source.id ?? '');
-            sourceItem.textContent = source.name;
+
+            const sources = document.querySelector('#sourceItemTemp .sources');
+            if (sources) {
+                sources.appendChild(sourceItem);
+            }
+
+            const sourceName = document.createElement('span');
+            sourceName.classList.add('source__item-name');
+            sourceName.textContent = source.name;
+
+            sourceItem.appendChild(sourceName);
 
             sourceItem.addEventListener('click', (event: Event) => {
                 const sourceId = this.getSourceIdFromEvent(event, '.source__item');
@@ -89,8 +136,6 @@ class AppView {
                     });
                 }
             });
-
-            this.sourcesContainer!.appendChild(sourceItem);
         });
     }
 }

@@ -6,11 +6,11 @@ class AppLoader extends Loader<NewsApiResponse> {
         const baseLinks: BaseLink[] = [
             {
                 url: "https://news-proxy.spanb4.shop/",
-                apiKey: "061aca91965445358b93ce15d016e915",
+                apiKey: "65320dfd62084dea947fb6d667bdef85",
             },
             {
                 url: "https://news-proxy.spanb4.shop/",
-                apiKey: "061aca91965445358b93ce15d016e915",
+                apiKey: "65320dfd62084dea947fb6d667bdef85",
             },
         ];
 
