@@ -1,6 +1,6 @@
 import AppController from '../controller/controller';
 import AppView from '../view/appView';
-import { NewsApiResponse } from '../interface/interfaceApi';
+import { NewsApiResponse, NewsArticle, NewsSource } from '../interface/interfaceApi';
 
 class App {
     private controller: AppController;
@@ -8,15 +8,14 @@ class App {
 
     constructor() {
         this.controller = new AppController();
-        this.view = new AppView();
+        this.view = new AppView(this.controller);
     }
 
     public start(): void {
-        document.addEventListener('click', (e: Event) =>
-            this.controller.getNews(e, (data: NewsApiResponse) => this.view.drawNews(data))
-        );
-
-        this.controller.getSources((data: NewsApiResponse) => this.view.drawSources([data.sources]));
+        this.view.initialize();
+        this.controller.getSources((data: NewsApiResponse) => {
+            this.view.drawSources(data.sources);
+        });
     }
 }
 

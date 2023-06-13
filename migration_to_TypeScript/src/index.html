@@ -9,34 +9,14 @@
 </head>
 
 <body>
-    <header>
-        <h1>News Portal</h1>
-    </header>
-    <main>
-        <div class="sources buttons">
-        </div>
-        <div class="news"></div>
-    </main>
-    <footer>
-        <p class="copyright">
-            Copyright <a href="https://newsapi.org">NewsAPI</a>
-        </p>
-        <p class="logo_rs">
-            <a href="https://rs.school/">
-                <img src="https://rs.school/images/rs_school_js.svg" alt="logo Rs school">
-            </a>
-        </p>
-
-
-    </footer>
-
-    <template id="sourceItemTemp">
+    <header id="sourceItemTemp">
         <div class="source__item">
+            <div class="sources"></div>
             <span class="source__item-name"></span>
         </div>
-    </template>
-
-    <template id="newsItemTemp">
+        <div class="news"></div>
+    </header>
+    <main id="newsItemTemp">
         <div class="news__item">
             <div class="news__meta">
                 <div class="news__meta-photo"></div>
@@ -54,8 +34,19 @@
                 </p>
             </div>
         </div>
-    </template>
-    <script>alert("Уважаемый проверяющий ментор, прошу проверить мою работу после 7.06. Не успела доделать, буду благодарна за понимание.");
+    </main>
+    <footer>
+        <p class="copyright">
+            Copyright <a href="https://newsapi.org">NewsAPI</a>
+        </p>
+        <p class="logo_rs">
+            <a href="https://rs.school/">
+                <img src="https://rs.school/images/rs_school_js.svg" alt="logo Rs school">
+            </a>
+        </p>
+
+
+    </footer>
     </script>
     <script src="./index.js"></script>
 </body>

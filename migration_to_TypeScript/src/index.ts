@@ -1,6 +1,11 @@
 import App from './components/app/app';
 import './global.css';
 
-const app = new App();
+class CustomApp extends App {
+    public start(): void {
+        super.start();
+    }
+}
+
+const app = new CustomApp();
 app.start();
-console.log(123)
