@@ -20,6 +20,7 @@ export interface NewsArticle extends Item {
     urlToImage: string | null;
     publishedAt: string;
     content: string;
+
 }
 
 export interface NewsSource extends Item {

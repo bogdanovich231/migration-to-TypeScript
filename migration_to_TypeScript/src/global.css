@@ -160,7 +160,7 @@ footer .copyright:before {
 }
 
 .news__item .news__description .news__read-more a {
-    color: #5ad67d;
+    color: #adb8e7;
     display: inline-block;
     position: relative;
     text-decoration: none;
@@ -193,7 +193,7 @@ footer .copyright:before {
     content: '';
     position: absolute;
     height: 5px;
-    background: #5ad67d;
+    background: #adb8e7;
     width: 35px;
     top: -0.75rem;
     border-radius: 3px;
@@ -245,4 +245,33 @@ footer .copyright:before {
     .news__item.alt .news__meta-details {
         padding-left: 25px;
     }
+}
+
+.sources {
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: #aaa transparent;
+}
+
+/* Стилизация ползунка скролла */
+.sources::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.sources::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.sources::-webkit-scrollbar-thumb {
+    background-color: #000000;
+    border-radius: 4px;
+}
+
+.sources::-webkit-scrollbar-thumb:hover {
+    background-color: #070ab3;
+}
+
+.sources::-webkit-scrollbar-corner {
+    display: none;
 }

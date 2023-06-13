@@ -49,7 +49,14 @@ class AppView {
             meta.classList.add('news__meta');
 
             const metaPhoto = document.createElement('div');
-            metaPhoto.classList.add('news__meta-photo');
+
+
+            if (article.urlToImage) {
+                const photo = document.createElement('img');
+                photo.classList.add('news__meta-photo');
+                photo.src = article.urlToImage;
+                meta.appendChild(photo);
+            }
 
             const metaDetails = document.createElement('ul');
             metaDetails.classList.add('news__meta-details');
