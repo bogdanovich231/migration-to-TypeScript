@@ -17,6 +17,34 @@ const baseConfig = {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
             },
+            {
+                test: /\.(png|jpe?g|gif)$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: 'images/[name].[hash:7].[ext]',
+                            outputPath: 'images/',
+                            publicPath: 'images/', // Путь, который будет использован в HTML для загрузки изображений
+                        },
+                    },
+                ],
+            },
+            {
+                test: /\.svg$/i,
+                use: [
+                    'svg-url-loader',
+                    {
+                        loader: 'svgo-loader',
+                        options: {
+                            name: 'images/[name].[hash:7].[ext]',
+                            outputPath: 'images/',
+                            publicPath: 'images/', // Путь, который будет использован в HTML для загрузки SVG
+                        },
+                    },
+                ],
+            },
+
         ],
     },
     resolve: {
