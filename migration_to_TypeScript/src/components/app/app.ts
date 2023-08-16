@@ -1,6 +1,6 @@
 import AppController from '../controller/controller';
 import AppView from '../view/appView';
-import { NewsApiResponse, NewsArticle, NewsSource } from '../interface/interfaceApi';
+import { NewsApiResponse} from '../interface/interfaceApi';
 
 class App {
     private controller: AppController;
